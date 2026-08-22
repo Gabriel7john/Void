@@ -1,0 +1,902 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VOID — Premium Oversized</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --black: #0b0a09;
+        --charcoal: #161412;
+        --charcoal-2: #201c19;
+        --bone: #ddd5c7;
+        --bone-dim: #8f8779;
+        --wine: #5c1420;
+        --wine-bright: #7a1c2b;
+        --violet: #2e1f3d;
+        --violet-bright: #4a3163;
+        --line: rgba(221, 213, 199, 0.12);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background: var(--black);
+        color: var(--bone);
+        font-family: "Inter", sans-serif;
+        font-weight: 300;
+        overflow-x: hidden;
+      }
+
+      .display {
+        font-family: "Cinzel", serif;
+        letter-spacing: 0.08em;
+      }
+
+      .mono {
+        font-family: "JetBrains Mono", monospace;
+        letter-spacing: 0.05em;
+      }
+
+      /* grain overlay */
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 999;
+        opacity: 0.05;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      }
+
+      /* ---------- HEADER ---------- */
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 28px 6%;
+        mix-blend-mode: difference;
+      }
+
+      .logo {
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: var(--bone);
+      }
+
+      nav ul {
+        display: flex;
+        gap: 40px;
+        list-style: none;
+      }
+
+      nav a {
+        color: var(--bone);
+        text-decoration: none;
+        font-size: 0.72rem;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        font-weight: 500;
+        position: relative;
+      }
+
+      nav a::after {
+        content: "";
+        position: absolute;
+        bottom: -6px;
+        left: 0;
+        width: 0%;
+        height: 1px;
+        background: var(--bone);
+        transition: width 0.3s ease;
+      }
+
+      nav a:hover::after {
+        width: 100%;
+      }
+
+      .cart-mono {
+        font-size: 0.7rem;
+      }
+
+      /* ---------- HERO ---------- */
+      .hero {
+        height: 100vh;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background:
+          radial-gradient(
+            ellipse at 50% 30%,
+            rgba(92, 20, 32, 0.18),
+            transparent 60%
+          ),
+          linear-gradient(180deg, var(--black) 0%, var(--charcoal) 100%);
+        overflow: hidden;
+      }
+
+      .sigil {
+        position: absolute;
+        width: min(70vw, 620px);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0.09;
+        animation: spin 90s linear infinite;
+      }
+
+      @keyframes spin {
+        to {
+          transform: translate(-50%, -50%) rotate(360deg);
+        }
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+      }
+
+      .hero-eyebrow {
+        font-size: 0.7rem;
+        color: var(--bone-dim);
+        text-transform: uppercase;
+        letter-spacing: 0.4em;
+        margin-bottom: 22px;
+      }
+
+      .hero-title {
+        font-size: clamp(4rem, 14vw, 11rem);
+        line-height: 0.9;
+        font-weight: 700;
+        color: var(--bone);
+        text-shadow: 0 0 60px rgba(92, 20, 32, 0.35);
+      }
+
+      .hero-sub {
+        margin-top: 24px;
+        font-size: 0.95rem;
+        color: var(--bone-dim);
+        font-weight: 300;
+        max-width: 420px;
+        margin-left: auto;
+        margin-right: auto;
+        line-height: 1.6;
+      }
+
+      .hero-cta {
+        display: inline-block;
+        margin-top: 44px;
+        padding: 16px 42px;
+        border: 1px solid var(--bone);
+        color: var(--bone);
+        text-decoration: none;
+        font-size: 0.72rem;
+        text-transform: uppercase;
+        letter-spacing: 0.25em;
+        transition: all 0.35s ease;
+      }
+
+      .hero-cta:hover {
+        background: var(--bone);
+        color: var(--black);
+      }
+
+      .scroll-cue {
+        position: absolute;
+        bottom: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 0.65rem;
+        color: var(--bone-dim);
+        text-transform: uppercase;
+        letter-spacing: 0.3em;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .scroll-line {
+        width: 1px;
+        height: 40px;
+        background: linear-gradient(var(--bone-dim), transparent);
+        animation: scrolldown 2s ease-in-out infinite;
+      }
+
+      @keyframes scrolldown {
+        0% {
+          opacity: 0;
+          transform: scaleY(0);
+          transform-origin: top;
+        }
+        50% {
+          opacity: 1;
+          transform: scaleY(1);
+          transform-origin: top;
+        }
+        100% {
+          opacity: 0;
+          transform: scaleY(1);
+          transform-origin: bottom;
+        }
+      }
+
+      /* ---------- MANIFESTO ---------- */
+      .manifesto {
+        padding: 180px 8%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        border-top: 1px solid var(--line);
+        align-items: start;
+      }
+
+      .manifesto-label {
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.3em;
+        color: var(--wine-bright);
+      }
+
+      .manifesto-text {
+        font-size: clamp(1.6rem, 2.6vw, 2.4rem);
+        line-height: 1.4;
+        font-weight: 300;
+        color: var(--bone);
+      }
+
+      .manifesto-text em {
+        font-style: normal;
+        font-family: "Cinzel", serif;
+        color: var(--violet-bright);
+      }
+
+      /* ---------- COLLECTION ---------- */
+      .section-head {
+        padding: 0 8%;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-bottom: 60px;
+      }
+
+      .section-title {
+        font-size: clamp(2.2rem, 5vw, 3.6rem);
+        font-weight: 600;
+      }
+
+      .section-count {
+        font-size: 0.75rem;
+        color: var(--bone-dim);
+      }
+
+      .collection {
+        padding: 140px 0 0;
+        border-top: 1px solid var(--line);
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2px;
+        background: var(--line);
+        padding: 0 8%;
+      }
+
+      .card {
+        background: var(--charcoal);
+        aspect-ratio: 3/4;
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+      }
+
+      .card-ph {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, var(--charcoal-2), var(--black));
+        color: var(--bone-dim);
+        font-size: 0.7rem;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        padding: 20px;
+        transition:
+          transform 0.6s ease,
+          color 0.4s ease;
+      }
+
+      .card:hover .card-ph {
+        transform: scale(1.06);
+        color: var(--bone);
+      }
+
+      .card-img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.6s ease;
+      }
+
+      .card:hover .card-img {
+        transform: scale(1.06);
+      }
+
+      .card-info {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 22px;
+        background: linear-gradient(0deg, rgba(11, 10, 9, 0.9), transparent);
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        opacity: 0;
+        transform: translateY(10px);
+        transition: all 0.4s ease;
+      }
+
+      .card:hover .card-info {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .card-name {
+        font-size: 0.95rem;
+        font-weight: 500;
+      }
+      .card-code {
+        font-size: 0.65rem;
+        color: var(--wine-bright);
+      }
+      .card-price {
+        font-size: 0.85rem;
+      }
+
+      /* ---------- COLORWAYS ---------- */
+      .colorways {
+        padding: 180px 8%;
+        border-top: 1px solid var(--line);
+      }
+
+      .colorways-intro {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        margin-bottom: 80px;
+        align-items: end;
+      }
+
+      .colorways-intro p {
+        color: var(--bone-dim);
+        font-size: 0.95rem;
+        line-height: 1.7;
+      }
+
+      .swatch-row {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+
+      .swatch {
+        flex: 1;
+        min-width: 140px;
+        aspect-ratio: 1;
+        border-radius: 2px;
+        display: flex;
+        align-items: flex-end;
+        padding: 16px;
+        font-size: 0.65rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--bone);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .swatch::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.15);
+      }
+
+      .swatch span {
+        position: relative;
+        z-index: 1;
+      }
+
+      .sw-black {
+        background: #141210;
+      }
+      .sw-white {
+        background: #c9c2b3;
+        color: #141210;
+      }
+      .sw-bone {
+        background: #a89a80;
+        color: #141210;
+      }
+      .sw-wine {
+        background: var(--wine);
+      }
+      .sw-violet {
+        background: var(--violet);
+      }
+
+      /* ---------- CRAFT / DETAIL ---------- */
+      .craft {
+        padding: 0 8% 180px;
+        display: grid;
+        grid-template-columns: 0.9fr 1.1fr;
+        gap: 80px;
+        border-top: 1px solid var(--line);
+        padding-top: 180px;
+      }
+
+      .craft-visual {
+        aspect-ratio: 4/5;
+        background: linear-gradient(160deg, var(--charcoal-2), var(--black));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--bone-dim);
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+      }
+
+      .craft-list {
+        display: flex;
+        flex-direction: column;
+        gap: 36px;
+      }
+
+      .craft-item {
+        display: grid;
+        grid-template-columns: 80px 1fr;
+        gap: 24px;
+        padding-bottom: 36px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .craft-num {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.75rem;
+        color: var(--wine-bright);
+      }
+
+      .craft-item h3 {
+        font-family: "Cinzel", serif;
+        font-weight: 500;
+        font-size: 1.15rem;
+        margin-bottom: 10px;
+        color: var(--bone);
+      }
+
+      .craft-item p {
+        color: var(--bone-dim);
+        font-size: 0.9rem;
+        line-height: 1.7;
+      }
+
+      /* ---------- NEWSLETTER / CTA ---------- */
+      .join {
+        padding: 160px 8%;
+        text-align: center;
+        border-top: 1px solid var(--line);
+        position: relative;
+        background: radial-gradient(
+          ellipse at 50% 100%,
+          rgba(46, 31, 61, 0.25),
+          transparent 70%
+        );
+      }
+
+      .join h2 {
+        font-family: "Cinzel", serif;
+        font-size: clamp(2rem, 5vw, 3.4rem);
+        margin-bottom: 20px;
+      }
+
+      .join p {
+        color: var(--bone-dim);
+        margin-bottom: 44px;
+        font-size: 0.95rem;
+      }
+
+      .join-form {
+        display: flex;
+        justify-content: center;
+        gap: 0;
+        max-width: 440px;
+        margin: 0 auto;
+        border-bottom: 1px solid var(--bone-dim);
+      }
+
+      .join-form input {
+        flex: 1;
+        background: none;
+        border: none;
+        color: var(--bone);
+        font-family: "Inter", sans-serif;
+        font-size: 0.9rem;
+        padding: 14px 4px;
+        outline: none;
+      }
+
+      .join-form input::placeholder {
+        color: var(--bone-dim);
+      }
+
+      .join-form button {
+        background: none;
+        border: none;
+        color: var(--bone);
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        cursor: pointer;
+        padding: 14px 4px;
+      }
+
+      /* ---------- FOOTER ---------- */
+      footer {
+        padding: 60px 8%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-top: 1px solid var(--line);
+        font-size: 0.7rem;
+        color: var(--bone-dim);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      }
+
+      footer .f-links {
+        display: flex;
+        gap: 30px;
+      }
+
+      footer a {
+        color: var(--bone-dim);
+        text-decoration: none;
+      }
+      footer a:hover {
+        color: var(--bone);
+      }
+
+      /* ---------- RESPONSIVE ---------- */
+      @media (max-width: 860px) {
+        nav ul {
+          display: none;
+        }
+        .manifesto,
+        .craft,
+        .colorways-intro {
+          grid-template-columns: 1fr;
+        }
+        .grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .craft {
+          padding-top: 120px;
+        }
+        .manifesto {
+          padding: 120px 6%;
+        }
+        footer {
+          flex-direction: column;
+          gap: 20px;
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="logo display">VOID</div>
+      <nav>
+        <ul>
+          <li><a href="#colecao">Coleção</a></li>
+          <li><a href="#cores">Cores</a></li>
+          <li><a href="#manifesto">Sobre</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </nav>
+      <div class="cart-mono mono">CART (0)</div>
+    </header>
+
+    <section class="hero">
+      <svg
+        class="sigil"
+        viewBox="0 0 200 200"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <circle
+          cx="100"
+          cy="100"
+          r="98"
+          stroke="#ddd5c7"
+          stroke-width="0.5"
+          fill="none"
+        />
+        <circle
+          cx="100"
+          cy="100"
+          r="86"
+          stroke="#ddd5c7"
+          stroke-width="0.5"
+          fill="none"
+        />
+        <path
+          d="M100 30 L108 90 L160 60 L112 100 L160 140 L108 110 L100 170 L92 110 L40 140 L88 100 L40 60 L92 90 Z"
+          stroke="#ddd5c7"
+          stroke-width="0.6"
+          fill="none"
+        />
+        <circle cx="100" cy="100" r="6" fill="#ddd5c7" />
+      </svg>
+      <div class="hero-content">
+        <div class="hero-eyebrow mono">PREMIUM OVERSIZED / 2026 — SEASON I</div>
+        <h1 class="hero-title display">VOID</h1>
+        <p class="hero-sub">
+          Nada sobra. Nada falta. Peças pretas premium para quem se veste de
+          silêncio.
+        </p>
+        <a href="#colecao" class="hero-cta">Ver Coleção</a>
+      </div>
+      <div class="scroll-cue">
+        <span>Role</span>
+        <div class="scroll-line"></div>
+      </div>
+    </section>
+
+    <section class="manifesto" id="manifesto">
+      <div class="manifesto-label mono">// MANIFESTO</div>
+      <p class="manifesto-text">
+        VOID nasce do vazio que sobra depois do excesso. Não é streetwear — é
+        <em>armadura silenciosa</em>. Cada peça carrega um símbolo que só quem
+        usa entende: o peso do que não se diz.
+      </p>
+    </section>
+
+    <section class="collection" id="colecao">
+      <div class="section-head">
+        <h2 class="section-title display">Coleção</h2>
+        <span class="section-count mono">01 — 06</span>
+      </div>
+      <div class="grid">
+        <div class="card">
+          <img
+            src="images/produtos/void-001.png"
+            alt="Camiseta Angel Fall"
+            class="card-img"
+          />
+          <div class="card-info">
+            <div>
+              <div class="card-name">Camiseta Angel Fall</div>
+              <div class="card-code mono">VOID-001</div>
+            </div>
+            <div class="card-price mono">R$ 000</div>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            src="images/produtos/void-002.png"
+            alt="Moletom Requiem"
+            class="card-img"
+          />
+          <div class="card-info">
+            <div>
+              <div class="card-name">Moletom Requiem</div>
+              <div class="card-code mono">VOID-002</div>
+            </div>
+            <div class="card-price mono">R$ 000</div>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            src="images/produtos/void-003.png"
+            alt="Camiseta Sigil Back"
+            class="card-img"
+          />
+          <div class="card-info">
+            <div>
+              <div class="card-name">Camiseta Sigil Back</div>
+              <div class="card-code mono">VOID-003</div>
+            </div>
+            <div class="card-price mono">R$ 000</div>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            src="images/produtos/void-004.png"
+            alt="Camiseta Ash"
+            class="card-img"
+          />
+          <div class="card-info">
+            <div>
+              <div class="card-name">Camiseta Ash</div>
+              <div class="card-code mono">VOID-004</div>
+            </div>
+            <div class="card-price mono">R$ 000</div>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            src="images/produtos/void-005.png"
+            alt="Moletom Sombra"
+            class="card-img"
+          />
+          <div class="card-info">
+            <div>
+              <div class="card-name">Moletom Sombra</div>
+              <div class="card-code mono">VOID-005</div>
+            </div>
+            <div class="card-price mono">R$ 000</div>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            src="images/produtos/void-006.png"
+            alt="Camiseta Wraith"
+            class="card-img"
+          />
+          <div class="card-info">
+            <div>
+              <div class="card-name">Camiseta Wraith</div>
+              <div class="card-code mono">VOID-006</div>
+            </div>
+            <div class="card-price mono">R$ 000</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="colorways" id="cores">
+      <div class="colorways-intro">
+        <h2 class="section-title display">Variações</h2>
+        <p>
+          Mesmo símbolo, cinco leituras. Do preto absoluto ao vinho profundo —
+          cada cor carrega o mesmo peso simbólico, só muda a luz.
+        </p>
+      </div>
+      <div class="swatch-row">
+        <div class="swatch sw-black"><span>Black</span></div>
+        <div class="swatch sw-bone"><span>Bone</span></div>
+        <div class="swatch sw-white"><span>Ash White</span></div>
+        <div class="swatch sw-wine"><span>Wine</span></div>
+        <div class="swatch sw-violet"><span>Violet</span></div>
+      </div>
+    </section>
+
+    <section class="craft">
+      <div class="craft-visual">[ foto still / embalagem ]</div>
+      <div class="craft-list">
+        <div class="craft-item">
+          <div class="craft-num mono">01</div>
+          <div>
+            <h3>Algodão Pesado</h3>
+            <p>
+              280g/m² para caimento oversized que não perde estrutura na
+              lavagem.
+            </p>
+          </div>
+        </div>
+        <div class="craft-item">
+          <div class="craft-num mono">02</div>
+          <div>
+            <h3>Estampa em Alto Relevo</h3>
+            <p>
+              Serigrafia densa, sem craquelado, com o símbolo VOID gravado nas
+              costas.
+            </p>
+          </div>
+        </div>
+        <div class="craft-item">
+          <div class="craft-num mono">03</div>
+          <div>
+            <h3>Embalagem Numerada</h3>
+            <p>
+              Cada peça sai com etiqueta costurada e cartão de autenticidade
+              numerado.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="join" id="contato">
+      <h2 class="display">Entre no Vazio</h2>
+      <p>
+        Lançamentos, drops limitados e acesso antecipado — direto no seu e-mail.
+      </p>
+      <form class="join-form" id="joinForm">
+        <input type="email" placeholder="seu@email.com" required />
+        <button type="submit">Entrar</button>
+      </form>
+    </section>
+
+    <footer>
+      <div class="mono">© 2026 VOID</div>
+      <div class="f-links">
+        <a href="#">Instagram</a>
+        <a href="#">WhatsApp</a>
+        <a href="#">Trocas</a>
+      </div>
+    </footer>
+
+    <script>
+      // header muda leve opacidade ao rolar (efeito sutil, sem exagero)
+      const header = document.querySelector("header");
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 40) {
+          header.style.padding = "18px 6%";
+        } else {
+          header.style.padding = "28px 6%";
+        }
+      });
+
+      // reveal on scroll simples
+      const revealEls = document.querySelectorAll(
+        ".card, .craft-item, .swatch",
+      );
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.style.opacity = 1;
+              e.target.style.transform = "none";
+              io.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.15 },
+      );
+
+      revealEls.forEach((el) => {
+        el.style.opacity = 0;
+        el.style.transform = "translateY(24px)";
+        el.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+        io.observe(el);
+      });
+
+      // form (placeholder - sem backend ainda)
+      document
+        .getElementById("joinForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          this.querySelector("button").textContent = "Feito ✓";
+        });
+    </script>
+  </body>
+</html>
