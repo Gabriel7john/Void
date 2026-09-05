@@ -161,6 +161,23 @@
   text-align: right;
   white-space: nowrap;
 }
+.cart-item-pay {
+  width: 100%;
+  background: var(--bone);
+  color: var(--black);
+  border: none;
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 7px 0;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+.cart-item-pay:hover {
+  opacity: 0.85;
+}
+
 .cart-item-remove {
   background: none;
   border: none;
@@ -226,4 +243,19 @@
 .toast.show {
   opacity: 1;
   transform: translateX(-50%) translateY(0);
+}
+
+.logo {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--bone);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-icon {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
 }
